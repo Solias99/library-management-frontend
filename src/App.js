@@ -1,17 +1,41 @@
 import React, { Fragment, Component } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+
+import Home from './components/Home';
+import AddAuthor from './components/Author/AddAuthor';
+import AddBook from './components/Book/AddBook';
+import Author from './components/Author/Author';
+import Book from './components/Book/Book';
+
+import './styles/main.css';
+
 
 class App extends Component {
-
-  componentDidMount() {
-    axios.get("http://localhost:3000/api/v1/books").then(response => console.log(response));
-  }
-  
   render() {
-    return(
-      <Fragment>
-        <div>Hello</div>
-      </Fragment>
+    return (
+        <Router>
+          <Fragment>
+            {/* Header */}
+            <Link 
+            to="/" 
+            style={{ textDecoration: 'none' }}
+            >
+              <h1 className="header">House of Words</h1>
+            </Link>
+
+            <ul className="links">
+              <Link to="/add-author" style={{ textDecoration: 'none' }}><li>Add an Author</li></Link>
+              <Link to="/add-book" style={{ textDecoration: 'none' }}><li>Add a Book</li></Link>
+            </ul>
+
+            <Route exact path="/" component={Home} />
+            <Route path="/add-author" component={AddAuthor} />
+            <Route path="/add-book" component={AddBook} />
+            <Route path="/book/:id" component={Book} />
+            <Route path="/author/:id" component={Author} />
+          </Fragment>
+        </Router>
     );
   }
 }
