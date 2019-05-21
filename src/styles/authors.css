@@ -8,15 +8,21 @@
     font-weight: bold;
 }
 
-.author_route_list {
+.author_route_container {
     padding: 20px;
     width: 30%;
     margin: 0 auto;
+}
+.author_route_list {
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
 }
 
+.author_route_list h3 {
+    font-family: 'Montserrat', sans-serif;
+}
 .author_delete {
+    margin-left: 10px;
     background: none;
     border: none;
     cursor: pointer;

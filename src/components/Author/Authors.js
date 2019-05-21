@@ -16,8 +16,15 @@ class Authors extends Component {
         })
     }
 
-    handleAuthorDelete = () => {
+    handleAuthorDelete = (_id) => {
+        console.log(_id);
+        axios.delete(`http://localhost:3000/api/v1/authors/${_id}`)
+            .then(response => console.log(response.data.message))
+            .catch(err => console.log(err.message));
 
+        const { authors } = this.state;
+        const data = authors.filter(author => author._id !== _id);
+        this.setState({ authors: data });
     }
 
     render() {
