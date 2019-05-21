@@ -50,7 +50,7 @@ class AddAuthor extends Component {
                         <input 
                             name="twitter"
                             type="text" 
-                            placeholder="Twitter handle.." 
+                            placeholder="https://twitter.com/handle" 
                             value={twitter}
                             onChange={this.handleInputChange} />
                     </div>

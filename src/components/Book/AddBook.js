@@ -22,7 +22,6 @@ class AddBook extends Component {
         .then(response => {
             var authors = response.data;
             var options = [];
-            console.log(authors);
             var keysMap = {
                 _id: 'value',
                 name: 'label'
@@ -63,7 +62,6 @@ class AddBook extends Component {
         for(let i=0;i<author_list.length;i++){
             authors.push(author_list[i].value);
         }
-        console.log(authors);
         axios.post('http://localhost:3000/api/v1/books', {
             title,
             summary,

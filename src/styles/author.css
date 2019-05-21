@@ -1,0 +1,21 @@
+.author_container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.twitter_flex {
+    color: blue;
+    margin-top: 5px;
+    display: flex;
+    transition: 0.3s;
+}
+
+.twitter_flex:hover {
+    color: rgba(22, 22, 189, 0.863);
+}
+
+.twitter_icon {
+    margin: 4px 4px 0 0;
+}

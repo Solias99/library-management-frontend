@@ -1,16 +1,25 @@
 import React, { Fragment } from 'react';
 import axios from 'axios';
 
+import '../../styles/author.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const Author = (props) => {
     const { author } = props.location.state;
     const { name, twitter, profilePicture, books } = author;
 
     return ( 
         <Fragment>
-            <h3>{name}</h3>
-            <p>{twitter}</p>
+            <div className="author_container">
+                <h3>{name}</h3>
+                <a href={twitter} target="_blank">
+                    <div className="twitter_flex">
+                    <FontAwesomeIcon icon={['fab', 'twitter']} className="twitter_icon"/>
+                    <p>@{twitter.substring(20)}</p>
+                    </div>
+                </a>
             {/* <img src={`data:image/png;base32,${profilePicture.data}`} /> */}
-            {!books && <button>Delete</button>}
+            </div>
         </Fragment>
     );
 }

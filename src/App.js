@@ -1,6 +1,9 @@
 import React, { Fragment, Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 import Home from './components/Home';
 import AddAuthor from './components/Author/AddAuthor';
@@ -9,6 +12,8 @@ import Author from './components/Author/Author';
 import Book from './components/Book/Book';
 
 import './styles/main.css';
+
+library.add(faTrashAlt, faTwitter, faCheck);
 
 
 class App extends Component {
