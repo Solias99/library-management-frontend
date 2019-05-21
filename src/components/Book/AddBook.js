@@ -6,17 +6,12 @@ import axios from 'axios';
 
 import '../../styles/form.css';
 
-const options = [
-    { value: 'chocolate', label: 'chocolate' },
-    { value: 'strawberry', label: 'strawberry' }
-];
-
 class AddBook extends Component {
     state = {
         title: '',
         summary: '',
         isbn: '',
-        authors: [],
+        author_list: [],
         options: [],
         success: '',
         error: ''
@@ -26,14 +21,28 @@ class AddBook extends Component {
         axios.get(`http://localhost:3000/api/v1/authors`)
         .then(response => {
             var authors = response.data;
+            var options = [];
             console.log(authors);
-            authors = _.pick(authors, ['_id', 'name']);
-            console.log(authors);
+            var keysMap = {
+                _id: 'value',
+                name: 'label'
+            };
 
-            this.setState({ options: response.data })
+            for(let i=0;i<authors.length;i++) {
+                var renamedOptions = this.renameKeys(keysMap, authors[i]);
+                options.push(_.pick(renamedOptions, ['value', 'label']));
+            }
+            this.setState({ options })
         })
         .catch(err => console.log(err));
     }
+
+    renameKeys = (keysMap, obj) => Object
+        .keys(obj)
+        .reduce((acc, key) => ({
+            ...acc,
+            ...{ [keysMap[key] || key]: obj[key] }
+    }), {});
 
     handleInputChange = (event) => {
         const target = event.target;
@@ -44,12 +53,17 @@ class AddBook extends Component {
     }
 
     handleSelectChange = (option) => {
-        this.setState({ authors: option })
+        this.setState({ author_list: option })
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { title, summary, isbn, authors, success, error }  = this.state;
+        const { title, summary, isbn, author_list }  = this.state;
+        var authors = [];
+        for(let i=0;i<author_list.length;i++){
+            authors.push(author_list[i].value);
+        }
+        console.log(authors);
         axios.post('http://localhost:3000/api/v1/books', {
             title,
             summary,
@@ -61,9 +75,9 @@ class AddBook extends Component {
     }
 
     render() {
-        var { title, summary, isbn, authors, success, error }  = this.state;
-    
-        // console.log(this.state);
+        var { title, summary, isbn, author_list, success, error, options }  = this.state;
+        
+        console.log(this.state);
         return(
             <Fragment>
                 <form className="form" onSubmit={this.handleSubmit} >
@@ -99,8 +113,9 @@ class AddBook extends Component {
                     <div className="form-group">
                         <label>Authors:</label>
                         <Select 
+                            className="select"
                             isMulti={true}
-                            value={authors}
+                            value={author_list}
                             onChange={this.handleSelectChange}
                             options={options}
                         />

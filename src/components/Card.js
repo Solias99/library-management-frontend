@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import '../styles/card.css';
 
 const Card = ({ book }) => {
-    const { title, summary, isbn, authors } = book;
+    const { title, summary, isbn, authors, _id } = book;
     return (
         <Fragment>
             <div className="card">
@@ -15,6 +15,7 @@ const Card = ({ book }) => {
                         return <li className="card_author_name"key={index}>{author.name}</li>
                     })}
                 </ul>
+                <button className="card_delete">Delete</button>
             </div>
         </Fragment>
     );

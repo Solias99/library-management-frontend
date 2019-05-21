@@ -1,7 +1,14 @@
 .card {
+    position: relative;
     margin-top: 50px;
     padding: 3rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card_delete {
+    position: absolute;
+    top: 10%;
+    right: 5%;
 }
 
 .card_title {
