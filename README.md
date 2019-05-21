@@ -40,5 +40,5 @@ The **EditBookModal** component is used to spin up a modal on the `/book/:id` ro
 
 * Currently book remains a stateless component, and I am unable to successfully pass state up to the Home component, therefore after Editing a book, you have to refresh the page or go back to the home page to see the edited changes. (Can be resolved, potentially using `useState`) or `createPortal` to send a method down to update parent state.
 * Author's profile picture not rendering. Possible workaround: change the data type of profilePicture in the backend to `String` instead of `Buffer`, to allow delivering an image through an API.
-
+* Client-side validation pending.
 
