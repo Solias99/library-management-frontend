@@ -40,7 +40,7 @@ class Home extends Component {
         console.log(query);
         this.setState(prevState => {
             const filteredData = prevState.books.filter(element => {
-              return element.title.toLowerCase().includes(query.toLowerCase());
+              return element.title.toLowerCase().includes(query.toLowerCase()) || element.summary.toLowerCase().includes(query.toLowerCase()) || element.isbn.toLowerCase().includes(query.toLowerCase());
             });
       return {
         query,

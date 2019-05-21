@@ -1,0 +1,25 @@
+.note {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.note span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.author_route_list {
+    padding: 20px;
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.author_delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: red;
+    font-size: 22px;
+}

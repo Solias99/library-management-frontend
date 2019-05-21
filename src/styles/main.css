@@ -79,6 +79,7 @@ h3 {
     }
 
     .search {
+        margin-left: 20px;
         width: 90%;
     }
 }

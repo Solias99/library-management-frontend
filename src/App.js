@@ -9,6 +9,7 @@ import AddAuthor from './components/Author/AddAuthor';
 import AddBook from './components/Book/AddBook';
 import Author from './components/Author/Author';
 import Book from './components/Book/Book';
+import Authors from './components/Author/Authors';
 
 import './styles/main.css';
 
@@ -31,9 +32,13 @@ class App extends Component {
             <ul className="links">
               <Link to="/add-author" style={{ textDecoration: 'none' }}><li>Add an Author</li></Link>
               <Link to="/add-book" style={{ textDecoration: 'none' }}><li>Add a Book</li></Link>
+              <Link to="/authors" style={{ textDecoration: 'none' }}>
+                <li>Authors</li>
+              </Link>
             </ul>
 
             <Route exact path="/" component={Home} />
+            <Route path="/authors" component={Authors} />
             <Route path="/add-author" component={AddAuthor} />
             <Route path="/add-book" component={AddBook} />
             <Route path="/book/:id" component={Book} />
