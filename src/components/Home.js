@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Card from './Card';
 
@@ -8,17 +9,20 @@ import Card from './Card';
 class Home extends Component {
     state = {
         books: [],
+        query: '',
+        filtered: [],
         success: '',
-        error: ''  
+        error: '',
     }
 
     componentDidMount() {
         axios.get("http://localhost:3000/api/v1/books")
         .then(response => {
-            this.setState({ books: response.data })
+            this.setState({ books: response.data, filtered: response.data })
         })
         .catch(err => console.log(err));
     }
+
 
     handleBookDelete = (_id) => {
         axios.delete(`http://localhost:3000/api/v1/books/${_id}`)
@@ -31,13 +35,31 @@ class Home extends Component {
         this.setState({ books: data });
     }
 
+    handleInputChange = (event) => {
+        const query = event.target.value;
+        console.log(query);
+        this.setState(prevState => {
+            const filteredData = prevState.books.filter(element => {
+              return element.title.toLowerCase().includes(query.toLowerCase());
+            });
+      return {
+        query,
+        filtered: filteredData
+      };
+    });
+    }
+
     render() {
-        const { books, success, error } = this.state;
-        console.log(books);
+        const { books, success, error, query, filtered } = this.state;
         return (
             <Fragment>
+                <div className="search">
+                    <input type="text" className="search_bar" value={query} placeholder="Search..." onChange={this.handleInputChange} />
+
+                    <FontAwesomeIcon icon="search" className="search_icon" />
+                </div>
                  <div className="card-section">
-                {books.map((book,index) => {
+                {filtered.map((book,index) => {
                     return <Card key={index} book={book} handleBookDelete={this.handleBookDelete} />
                 })}
                 </div>

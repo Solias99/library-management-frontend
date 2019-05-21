@@ -1,14 +1,15 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
-
-import '../../styles/book.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import '../../styles/book.css';
+
+import EditBookModal from './EditBookModal';
+
+
 const Book = (props) => {
-    const { book } = props.location.state;
+    const { book } = props.location.state; 
     const { authors, created, isbn, summary, title } = book;
-    console.log(book);
     return (
         <Fragment>
             <div className="book_container">
@@ -34,10 +35,9 @@ const Book = (props) => {
                 <ul className="book_author_list">
                     <li className="book_subtitle">Authors: </li>
                     {authors.map((author,index) => {
-                        return <li>
+                        return <li key={index}>
                         <FontAwesomeIcon icon="check" className="check_icon" />
                         <Link
-                            key={index}
                             to={{
                                 pathname: `/author/${author._id}`,
                                 state: {
@@ -51,7 +51,7 @@ const Book = (props) => {
                         </li>
                     })}  
                 </ul>
-                <button className="edit_book">Edit this book</button>     
+                <EditBookModal book={book}/>     
             </div>    
         </Fragment>
     );

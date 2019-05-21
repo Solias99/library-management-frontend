@@ -15,7 +15,7 @@ const Card = ({ book, handleBookDelete }) => {
                 <Link style={{ textDecoration: 'none' }} to={{
                         pathname: `/book/${_id}`,
                         state: {
-                            book
+                            book,
                         }
                     }}><h3 className="card_title">{title}</h3>
                     </Link>

@@ -42,11 +42,43 @@ h3 {
     margin: 0 auto;
 }
 
+.search {
+    margin: 20px auto;
+    width: 50%;
+    position: relative;
+}
 
+.search_bar {
+    /* display: block; */
+    /* width: 50%; */
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    width: 95%;
+    padding: 20px;
+}
+
+.search_bar:focus {
+    outline: none;
+}
+
+
+
+.search_icon {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translate(-50%,-50%);
+}
 
 @media screen and (max-width: 768px) {
     .card-section {
         width: 90%;
         font-size: 80%;
+    }
+
+    .search {
+        width: 90%;
     }
 }
