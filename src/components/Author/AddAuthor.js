@@ -26,7 +26,15 @@ class AddAuthor extends Component {
             name,
             twitter
         })
-        .then(response => this.setState({ success: response.data.message }))
+        .then(response => {
+            console.log(response);
+            if(response.data.errors) {
+                this.setState({ success: '', error: response.data.message })
+            }
+            else {
+                this.setState({ error: '', success: response.data.message })
+            }
+        })
         .catch(err => this.setState({ error: err.message }));
     }
 
@@ -50,7 +58,7 @@ class AddAuthor extends Component {
                         <input 
                             name="twitter"
                             type="text" 
-                            placeholder="https://twitter.com/handle" 
+                            placeholder="twitter-handle" 
                             value={twitter}
                             onChange={this.handleInputChange} />
                     </div>

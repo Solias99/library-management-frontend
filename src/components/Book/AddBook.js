@@ -68,14 +68,21 @@ class AddBook extends Component {
             isbn,
             authors,
         })
-        .then(response => this.setState({ success: response.data.message }))
-        .catch(err => this.setState({ error: err.message }));
+        .then(response => {
+            console.log(response.data);
+            if(response.data.errors) {
+                this.setState({ success: '', error: response.data.message })
+            }
+            else {
+                this.setState({ error: '', success: response.data.message })
+            }
+        })
+        .catch(err => console.log(err));
     }
 
     render() {
         var { title, summary, isbn, author_list, success, error, options }  = this.state;
         
-        console.log(this.state);
         return(
             <Fragment>
                 <form className="form" onSubmit={this.handleSubmit} >

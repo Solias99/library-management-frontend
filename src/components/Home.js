@@ -30,9 +30,9 @@ class Home extends Component {
         .catch(err => this.setState({ error: err.message}));
 
         console.log(_id);
-        const { books } = this.state;
-        const data = books.filter(book => book._id !== _id);
-        this.setState({ books: data });
+        const { filtered } = this.state;
+        const data = filtered.filter(book => book._id !== _id);
+        this.setState({ filtered: data });
     }
 
     handleInputChange = (event) => {

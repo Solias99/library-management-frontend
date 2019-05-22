@@ -15,7 +15,7 @@ const Author = (props) => {
                 <a href={twitter} target="_blank">
                     <div className="twitter_flex">
                     <FontAwesomeIcon icon={['fab', 'twitter']} className="twitter_icon"/>
-                    <p>@{twitter.substring(20)}</p>
+                    <a href={`https://twitter.com/${twitter}`} target="_blank">{twitter}</a>
                     </div>
                 </a>
             {/* <img src={`data:image/png;base32,${profilePicture.data}`} /> */}
